@@ -116,4 +116,5 @@ public class RandomValidateCodeUtil {
     public String getRandomString(int num) {
         return String.valueOf(randString.charAt(num));
     }
+    
 }

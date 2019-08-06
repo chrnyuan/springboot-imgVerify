@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+<script type="text/javascript">
+function loadXMLDoc()
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("POST","/ajax/demo_post2.asp",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send("fname=Bill&lname=Gates");
+}
+</script>
+</head>
+<body>
+
+<h2>AJAX</h2>
+<button type="button" onclick="loadXMLDoc()">请求数据</button>
+<div id="myDiv"></div>
+
+<input type="button" value="qqq" onclick="ipclick()">
+</body>
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script type="text/javascript"> 
+document.write(returnCitySN["cip"]+','+returnCitySN["cname"]) 
+function ipclick(){
+		$.ajax({
+			//ajax的几个参数
+			type: "post",
+			url: "/user/ip",
+			data:JSON.stringify({"ip":returnCitySN["cip"],"pwd":"123456"}),//JSON.stringify是把javaScript值或数组转换成json对象
+//			dataType: "json",//表示需要返回的是json数据
+			contentType:"application/json",
+			success: function (data){
+				console.log(data);
+				if(data=="ok"){
+					console.log("成功");
+				}else{
+					console.log("失败");
+				}
+				
+			},
+			error: function (){
+				alert("异常！");
+			}
+		})
+  }
+</script>
+</html>

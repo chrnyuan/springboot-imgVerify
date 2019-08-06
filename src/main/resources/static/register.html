@@ -4,24 +4,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户注册</title>
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <base href="http://localhost:8088/">
 <body onload="getVerify(this)">
 	<!--公共头部 ft_header eof-->
 
 	<div >
-	<form action="/user/register" method="post">
+	<form >
 		<input type="text" name="username"placeholder="请输入用户名" ><br>
 		<input type="password" name="password" placeholder="请输入密码"><br>
 		<input class="form-control" type="tel" id="verify_input" name="imgVerify" placeholder="请输入验证码" maxlength="4">
 		<a href="javascript:void(0);" title="点击更换验证码">
             <img id="imgVerify" src="" alt="更换验证码" height="36" width="100px" onclick="getVerify(this);">
         </a><br>
-		<input type="submit" value="注册">  <a href="/login"><input type="button" value="登录"></a>
+		<input type="submit" value="注册" onclick="register()">  <a href="/login"><input type="button" value="登录"></a>
 	</form>
 	
 
 	</div>
 </body>
+<!-- 使用ajax 提交数据 -->
+<script type="text/javascript">
+//通过docment
+$().ready(function register(){
+	$.ajax({
+		//ajax的几个参数
+		type: "post",
+		url: "/user/register",
+		data: $("verify_input").val(),
+		success: function (result){
+			console.log(result);
+			
+		},
+		error : function (){
+			alter("异常！");
+		}
+	
+	})
+	
+})
+	
+</script>
 
 <script type="text/javascript">
 
