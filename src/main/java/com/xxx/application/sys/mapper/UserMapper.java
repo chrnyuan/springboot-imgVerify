@@ -1,10 +1,7 @@
 package com.xxx.application.sys.mapper;
 
-import com.xxx.application.sys.entity.User;
-
-import org.apache.ibatis.annotations.Mapper;
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.xxx.application.sys.entity.User;
 
 /**
  * <p>

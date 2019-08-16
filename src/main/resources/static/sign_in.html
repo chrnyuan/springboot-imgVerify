@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>sign_in</title>
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+</head>
+<body>
+name:<input id="name" type="text" onblur="verifyName()" />
+	<i id="i" style="color: red"/></i><br>
+password:<input id="pwd" type="password"/><br>
+	<input type="submit" value="Sign in" onclick="login()"><br>
+	<i id="pi" style="color: red"/>
+	
+
+</body>
+<script type="text/javascript">
+function verifyName(){
+	$.ajax({
+		type: "post",
+		url: "/sys/user/selectUsername",
+		contentType: "application/x-www-form-urlencoded; charset=utf-8",//ajax默认的ContentType格式
+		data: {"username" : $("#name").val()},
+		success: function (data){
+			console.log(data)
+			if(data.code==0){
+				$("#i").text("");
+			}else if(data.code==1){
+				$("#i").text("此账号不存在");
+			}
+		}
+	})
+}
+function login(){
+	$.ajax({
+		url: "/sys/user/login",
+		type: "post",
+		data: {"username":$("#name").val(),"password":$("#pwd").val()},
+		success : function(data){
+			if(data.code == 0){
+			//$("#pi").text("");
+				console.log("success");
+				//类似Http重定向
+				window.location.replace("http://localhost:8088/aa.html");
+			}else{
+				$("#pi").text(data.msg);
+			}
+		}
+	})
+	
+}
+</script>
+</html>

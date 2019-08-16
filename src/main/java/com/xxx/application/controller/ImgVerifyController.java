@@ -9,7 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.xxx.application.util.RandomValidateCodeUtil;
-
+/**
+ * 
+ * @author ZYK
+ * 2019年8月14日 下午4:59:44
+ * Desc:
+ */
 @Controller
 public class ImgVerifyController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -29,4 +34,6 @@ public class ImgVerifyController {
 	        logger.error("获取验证码失败>>>>   ", e);
 	    }
 	}
+	
+	
 }

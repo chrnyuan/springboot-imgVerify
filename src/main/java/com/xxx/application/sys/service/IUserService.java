@@ -1,10 +1,7 @@
 package com.xxx.application.sys.service;
 
-import com.xxx.application.sys.entity.User;
-
-import org.springframework.stereotype.Service;
-
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xxx.application.sys.entity.User;
 
 /**
  * <p>

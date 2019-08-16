@@ -4,8 +4,10 @@ import java.io.IOException;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,32 +16,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.jarod.qqwry.IPZone;
 import com.github.jarod.qqwry.QQWry;
 
-//@Controller
+@Controller
 public class UserTestController {
-	@ResponseBody
-	@PostMapping("/user/register")
-	public String imgVerify(HttpServletRequest request, String imgVerify){
-		
-		//判断图片验证码是否为空
-		System.out.println("imgVerify"+imgVerify);
-		//判读字符串的长度
-		/*String trim = imgVerify.trim();
-		if ( trim.length()==0 ) {
-			return "验证码不能为空";
-		}*/
-		if (imgVerify.isEmpty()) {
-			return "验证码不能为空";	
-		}
-		Cookie[] cookies = request.getCookies();
-		
-		HttpSession session = request.getSession();
-		String verifyCode = (String) session.getAttribute("RANDOMVALIDATECODEKEY");
-		if (imgVerify.equals(verifyCode)) {
-//			int b = 3/0;
-			return "验证码正确";
-		}
-		return "验证码错误";
-	}
 	
 	@PostMapping("/user/ip")
 	@ResponseBody
@@ -63,7 +41,6 @@ public class UserTestController {
 		
       return "ok";
 	}
-	
 	
 	
 }
